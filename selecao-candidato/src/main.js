@@ -3,7 +3,7 @@ import App from './App.vue'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
-//Imposts para usar o bootstrapVue na aplicação
+//Imports para usar o bootstrapVue na aplicação
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'

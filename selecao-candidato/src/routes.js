@@ -1,7 +1,7 @@
 import Home from './components/home/Home.vue';
 import ListarEmpresa from './components/empresa/ListarEmpresa.vue';
 import Empresa from './components/empresa/Empresa.vue';
-import Candidato from '/components/empresa/Candidato.vue';
+import Candidato from './components/candidato/Candidato.vue';
 
 export const routes = [
     {path: '', name: 'home', titulo: 'Home', component: Home},
