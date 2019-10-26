@@ -3,23 +3,23 @@
         <h2>Cadastrar Empresa</h2>
         
         <form @submit.prevent="salvar()">
-            <div v-show="msg">
+            <div v-show="msg" :class ="msgClass">
                 <label>{{msg}}</label>
             </div>
 
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input class="form-control" id="nome" name="nome" v-model="empresa.nome">
+                <input class="form-control" id="nome" name="nome" v-model="empresa.nome" required>
             </div>
 
             <div class="form-group">
                 <label for="estado">Estado</label>
-                <input class="form-control" id="estado" name="estado" v-model="empresa.estado">
+                <input class="form-control" id="estado" name="estado" v-model="empresa.estado" required>
             </div>
 
             <div class="form-group">
                 <label for="cidade">Cidade</label>
-                <input class="form-control" id="cidade" name="cidade" v-model="empresa.cidade">
+                <input class="form-control" id="cidade" name="cidade" v-model="empresa.cidade" required>
             </div>
 
             <button class="btn btn-primary" type="submit" v-show="!msg">Salvar</button>
@@ -45,15 +45,27 @@ export default {
     methods: {
         novo() {
             this.msg = undefined;
+            this.msgClass = undefined;
             this.empresa = new Empresa();
         },
 
         salvar() {
+            if(this.empresa.nome!==" " && this.empresa.estado!== " " && this.empresa.cidade!== "" ){
             this.service.salvar(this.empresa)
             .then(
-                () => this.msg = "Salvo com sucesso",
-                () => this.msg = "Erro ao Salvar"
+                (res) =>{
+                    this.msg = "Salvo com sucesso";
+                    this.msgClass="alert alert-success";
+                } ,
+                (err) =>{
+                    this.msg = "Erro ao Salvar";
+                    this.msgClass="alert alert-danger";
+                } 
             );
+            }else{
+                this.msg = "Preencha todos os campos";
+                this.msgClass="alert alert-danger";
+            }
         }
     },
 

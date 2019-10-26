@@ -9,12 +9,12 @@
 
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input class="form-control" id="nome" name="nome" v-model="candidato.nome">
+                <input class="form-control" id="nome" name="nome" v-model="candidato.nome" required>
             </div>
 
             <div class="form-group">
                 <label for="idade">Idade</label>
-                <input class="form-control" id="idade" name="idade" v-model="candidato.idade">
+                <input class="form-control" id="idade" name="idade" v-model="candidato.idade" required>
             </div>
 
             <div class="form-group">
@@ -29,13 +29,13 @@
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone</label>
-                <input class="form-control" id="telefone" name="telefone" v-model="candidato.telefone">
+                <input class="form-control" id="telefone" name="telefone" v-model="candidato.telefone" required>
             </div>
 
             <div class="form-group">
 
                 <label for="empresa">Empresa</label>
-                <select  class="form-control"v-model ="candidato.empresa">
+                <select  class="form-control"v-model ="candidato.empresa" required>
                 <option v-for = "option in options" v-bind:value="option.value">
                     {{option.text}}
                     </option>
@@ -123,18 +123,25 @@ export default {
 
         salvar() {
             console.log(this.candidato);
+            if(this.candidato.nome!==" " && this.candidato.idade!== " " && this.candidato.telefone!== "" 
+            && this.candidato.empresa!== "" && this.candidato.sexo!==" "){
             
             this.service.salvar(this.candidato)
             .then(
-                (res) => {
-                    console.log(res);
-                    this.msg = "Salvo com sucesso"
-                },
-                (err) => {
-                    console.log(err);
-                    this.msg = "Erro ao Salvar"
+                (res) =>{
+                    this.msg = "Salvo com sucesso";
+                    this.msgClass="alert alert-success";
+                } ,
+                (err) =>{
+                    this.msg = "Erro ao Salvar";
+                    this.msgClass="alert alert-danger";
                 }
             );
+            
+            }else{
+                this.msg = "Preencha todos os campos";
+                this.msgClass="alert alert-danger";
+            }
         },
         adicionar(){
             this.candidato.conhecimentos.push(this.conhecimento);
