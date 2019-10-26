@@ -7,24 +7,24 @@
                 <label>{{msg}}</label>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="nome">Nome</label>
-                <input id="nome" name="nome" v-model="empresa.nome">
+                <input class="form-control" id="nome" name="nome" v-model="empresa.nome">
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="estado">Estado</label>
-                <input id="estado" name="estado" v-model="empresa.estado">
+                <input class="form-control" id="estado" name="estado" v-model="empresa.estado">
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="cidade">Cidade</label>
-                <input id="cidade" name="cidade" v-model="empresa.cidade">
+                <input class="form-control" id="cidade" name="cidade" v-model="empresa.cidade">
             </div>
 
-            <button type="submit" v-show="!msg">Salvar</button>
-            <button v-show="msg" v-on:click.stop.prevent="novo">Novo</button>
-            <router-link to="/listar-empresa" tag="button">Voltar</router-link>
+            <button class="btn btn-primary" type="submit" v-show="!msg">Salvar</button>
+            <button class="btn btn-primary" v-show="msg" v-on:click.stop.prevent="novo">Novo</button>
+            <router-link class="btn" to="/listar-empresa" tag="button">Voltar</router-link>
         </form>
     </div>
 </template>

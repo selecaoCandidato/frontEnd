@@ -2,11 +2,12 @@
     <div>
         <h2>Empresas Cadastradas</h2>
 
-        <table>
+        <table class="table table-striped">
             <thead>
-                <th>Nome</th>
-                <th>Estado</th>
-                <th>Cidade</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Cidade</th>
+                <th scope="col"></th>
             </thead>
             <tbody>
                 <tr v-for="empresa in empresas">
@@ -14,7 +15,7 @@
                     <td>{{ empresa.estado }}</td>
                     <td>{{ empresa.cidade }}</td>
                     <td>
-                        <button type="submit" @click="deletar(empresa)">
+                        <button class="btn" type="submit" @click="deletar(empresa)">
                             <img src="../../assets/trash.png">
                         </button>
                         <router-link tag="button" :to="{ name:'editarCadastro', params: { id: empresa.id } }">
@@ -25,7 +26,7 @@
             </tbody>
         </table>
 
-        <router-link to="/empresa" tag="button" >Cadastrar Empresa</router-link>
+        <router-link class="btn btn-primary" to="/empresa" tag="button" >Cadastrar Empresa</router-link>
     </div>
 </template>
 

@@ -1,14 +1,8 @@
 <template>
   <div>
-    <div id="app">
-      <h1>Seleção de Candidatos</h1>
-    </div>
+    <comp-menu :rotas="routes"/>
 
-    <div class="menu">
-      <comp-menu :rotas="routes"/>
-    </div>
-
-    <div class="conteudo">
+    <div class="col-md-10 offset-md-1">
       <transition>
         <router-view></router-view>
       </transition>
@@ -35,29 +29,6 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-h1, h2 {
-  font-weight: normal;
-}
-
-.menu {
-  width: 10%;
-  height: 500px;
-  vertical-align: top;
-  display: inline-block;
-}
-
-.conteudo {
-  width: 80%;
-  display: inline-block;
-}
 
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <nav>
-        <ul>
-            <li v-for="rota in rotas">
-                <router-link :to="rota.path ? rota.path : '/'">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item" v-for="rota in rotas">
+                <router-link class="nav-link" :to="rota.path ? rota.path : '/'">
                     {{ rota.titulo }}
                 </router-link>
             </li>
