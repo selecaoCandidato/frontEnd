@@ -2,30 +2,34 @@
     <div>
         <h2>Cadastrar Empresa</h2>
         
-        <form @submit.prevent="salvar()">
-            <div v-show="msg">
-                <label>{{msg}}</label>
-            </div>
+        <b-form @submit.prevent="salvar()">
+
+            <b-alert v-model="msgValida" variant="success" dismissible>
+                Cadastro realizado com sucesso!
+            </b-alert>
+            <b-alert v-model="msgInvalida" variant="danger" dismissible>
+                Falha ao realizar o cadastro!
+            </b-alert>
 
             <div>
                 <label for="nome">Nome</label>
-                <input id="nome" name="nome" v-model="empresa.nome">
+                <b-form-input id="nome" name="nome" v-model="empresa.nome"/>
             </div>
 
             <div>
                 <label for="estado">Estado</label>
-                <input id="estado" name="estado" v-model="empresa.estado">
+                <b-form-input id="estado" name="estado" v-model="empresa.estado"/>
             </div>
 
             <div>
                 <label for="cidade">Cidade</label>
-                <input id="cidade" name="cidade" v-model="empresa.cidade">
+                <b-form-input id="cidade" name="cidade" v-model="empresa.cidade"/>
             </div>
 
-            <button type="submit" v-show="!msg">Salvar</button>
-            <button v-show="msg" v-on:click.stop.prevent="novo">Novo</button>
-            <router-link to="/listar-empresa" tag="button">Voltar</router-link>
-        </form>
+            <b-button variant="success" type="submit" v-show="!msgValida">Salvar</b-button>
+            <b-button variant="success" v-show="msgValida" v-on:click.stop.prevent="novo">Novo</b-button>
+            <router-link to="/listar-empresa" tag="b-button">Voltar</router-link>
+        </b-form>
     </div>
 </template>
 
@@ -37,22 +41,24 @@ export default {
     data() {
         return {
             empresa: new Empresa(),
-            msg: undefined,
+            msgValida: undefined,
+            msgInvalida: undefined,
             id: this.$route.params.id
         }
     },
     
     methods: {
         novo() {
-            this.msg = undefined;
+            this.msgValida = undefined;
+            this.msgInvalida = undefined;
             this.empresa = new Empresa();
         },
 
         salvar() {
             this.service.salvar(this.empresa)
             .then(
-                () => this.msg = "Salvo com sucesso",
-                () => this.msg = "Erro ao Salvar"
+                () => this.msgValida = true,
+                () => this.msgInvalida = true
             );
         }
     },

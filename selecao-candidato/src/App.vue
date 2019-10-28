@@ -9,8 +9,11 @@
     </div>
 
     <div class="conteudo">
-      <transition>
-        <router-view></router-view>
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <router-view/>
       </transition>
     </div>
   </div>
@@ -19,6 +22,9 @@
 <script>
 import { routes } from './routes';
 import Menu from './components/shared/menu/Menu.vue';
+
+
+
 
 export default {
   
@@ -49,15 +55,28 @@ h1, h2 {
 }
 
 .menu {
-  width: 10%;
-  height: 500px;
+  width: 100%;
+  text-align: center;
   vertical-align: top;
   display: inline-block;
 }
 
 .conteudo {
-  width: 80%;
+  width: 100%;
+  padding: 2%;
   display: inline-block;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
 }
 
 </style>
