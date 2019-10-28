@@ -1,13 +1,14 @@
 <template>
-    <nav>
-        <ul>
-            <li v-for="rota in rotas">
-                <router-link :to="rota.path ? rota.path : '/'">
-                    {{ rota.titulo }}
-                </router-link>
-            </li>
-        </ul>
-    </nav>
+    <ul class="nav justify-content-md-center">
+      <li class="nav-item" v-for="rota in rotas">
+        <router-link :to="rota.path ? rota.path : '/'" class="nav-link active">
+            <h4>{{ rota.titulo }}</h4>
+        </router-link>
+      </li>
+    </ul>
+
+
+
 </template>
 
 <script>
@@ -22,5 +23,9 @@ export default {
 </script>
 
 <style scoped>
+ul{
 
+    padding-top: 10px;
+
+}
 </style>
