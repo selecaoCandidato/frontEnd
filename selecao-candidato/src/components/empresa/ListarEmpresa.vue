@@ -1,8 +1,14 @@
 <template>
-    <div>
+  <div class="container-fluid pl-lg-5 pr-lg-5">
+    <div class="row justify-content-center">
+
+      <div class="card text-center col-sm-6">
+
+        <div class="card-body">
         <h2>Empresas Cadastradas</h2>
 
-        <table>
+          <div class="table-responsive mt-5">
+            <table class="table">
             <thead>
                 <th>Nome</th>
                 <th>Estado</th>
@@ -17,16 +23,20 @@
                         <button type="submit" @click="deletar(empresa)">
                             <img src="../../assets/trash.png">
                         </button>
-                        <router-link tag="button" :to="{ name:'editarCadastro', params: { id: empresa.id } }">
+                        <router-link tag="button" :to="{ name:'editarCadastroEmpresa', params: { id: empresa.id } }">
                             <img src="../../assets/edit.png">
                         </router-link>
                     </td>
                 </tr>
             </tbody>
         </table>
-
-        <router-link to="/empresa" tag="button" >Cadastrar Empresa</router-link>
+          </div>
+        <router-link class="btn btn-primary" to="/empresa" tag="button" >Cadastrar Empresa</router-link>
     </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
