@@ -1,13 +1,9 @@
 <template>
-    <nav>
-        <ul>
-            <li v-for="rota in rotas">
-                <router-link :to="rota.path ? rota.path : '/'">
-                    {{ rota.titulo }}
-                </router-link>
-            </li>
-        </ul>
-    </nav>
+    <b-navbar toggleable="lg" type="dark" variant="info"  fixed>
+    
+            <b-navbar-brand v-for="rota in rotas" :to="rota.path ? rota.path : '/'">{{ rota.titulo }}</b-navbar-brand>
+        
+    </b-navbar>
 </template>
 
 <script>

@@ -1,14 +1,11 @@
 <template>
     <div>
-        <h2>Empresas Cadastradas</h2>
-            <b-alert v-model="msgInvalida" variant="danger" dismissible>
-               Candidatos vinculados a empresa. Exclusão não permitida!
-            </b-alert>
-         <b-table
+        <h2>Candidatos Cadastrados</h2>
+        <b-table
             show-empty
             
             stacked="md"
-            :items="empresas"
+            :items="candidatos"
             :fields="fields"
         
             >
@@ -18,7 +15,7 @@
                 <b-button variant="outline-danger" @click="deletar(row.item)" class="mr-1">
                     <img src="../../assets/trash.png">
                 </b-button>
-                <router-link tag="b-button" :to="{ name:'editarEmpresa', params: { id: row.item.id } }">
+                <router-link tag="b-button" :to="{ name:'editarCandidato', params: { id: row.item.id } }">
                             <img src="../../assets/edit.png">
                         </router-link>
             </template>
@@ -32,48 +29,46 @@
             </template>
             </b-table>
 
-        <router-link to="/empresa" tag="b-button" >Cadastrar Empresa</router-link>
-
-    </div>    
+        <router-link to="/candidato" tag="b-button" size="sm" >Cadastrar Candidato</router-link>
+    </div>
 </template>
 
 <script>
-import EmpresaService from '../../domain/empresa/EmpresaService';
+import CandidatoService from '../../domain/candidato/CandidatoService';
 
 export default {
 
     data() {
         return {
-            modalShow: false,
-            msgInvalida: undefined,
-            empresas: [],
+            candidatos: [],
             fields: [
                 { key: 'nome', label: 'Nome', class: 'text-center'},
-                { key: 'estado', label: 'Estado', class: 'text-center' },
-                { key: 'cidade', label: 'Cidade', class: 'text-center' },
+                { key: 'idade', label: 'Idade', class: 'text-center' },
+                { key: 'telefone', label: 'Telefone', class: 'text-center' },
+                { key: 'empresa', label: 'Empresa', class: 'text-center' },
                 { key: 'acao', label: 'Ações', class: 'text-center' }
             ]
         }
     },
 
     created() {
-        this.service = new EmpresaService(this.$resource);
+        this.service = new CandidatoService(this.$resource);
 
         this.service.listar()
         .then(
-            empresas => this.empresas = empresas,
-            err =>  console.log(err)
+            candidatos => this.candidatos = candidatos,
+            err => console.log(err)
         );
     },
 
     methods: {
 
-        deletar(empresa) {
-            this.service.deletar(empresa.id)
+        deletar(candidato) {
+            this.service.deletar(candidato.id)
             .then(() => {
-                let indice = this.empresas.indexOf(empresa, 1);
-                this.empresas.splice(indice, 1);
-            }, err => this.msgInvalida = true );
+                let indice = this.candidatos.indexOf(candidato, 1);
+                this.candidatos.splice(indice, 1);
+            }, err => console.log(err.message));
         }
 
     }

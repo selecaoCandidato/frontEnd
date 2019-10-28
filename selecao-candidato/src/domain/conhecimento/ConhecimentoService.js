@@ -1,13 +1,13 @@
-export default class EmpresaService {
+export default class ConhecimentoService {
     constructor(resource) {
-        this._resource = resource('empresa{/id}');
+        this._resource = resource('conhecimento{/id}');
     }
 
-    salvar(empresa) {
-        if(empresa.id){
-            return this._resource.update(empresa);
+    salvar(conhecimento) {
+        if(conhecimento.id){
+            return this._resource.update(conhecimento);
         }else{
-            return this._resource.save(empresa);
+            return this._resource.save(conhecimento);
         }
     }
 
